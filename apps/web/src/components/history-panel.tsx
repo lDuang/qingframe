@@ -16,13 +16,13 @@ type HistoryPanelProps = {
 
 export function HistoryPanel({ tasks, tools, previewUrls, selectedTaskId, onSelectTask }: HistoryPanelProps) {
   return (
-    <aside className="w-80 border-l">
+    <aside className="border-t xl:w-80 xl:shrink-0 xl:border-t-0 xl:border-l">
       <div className="flex items-center justify-between px-4 py-4">
         <div className="text-sm font-semibold">最近记录</div>
         <Badge variant="outline">{tasks.length}</Badge>
       </div>
       <Separator />
-      <ScrollArea className="h-[calc(100vh-3.5rem-1px)]">
+      <ScrollArea className="max-h-80 xl:h-[calc(100vh-6.5rem-1px)] xl:max-h-none">
         <div className="space-y-3 p-4">
           {tasks.length ? (
             tasks.map((task) => (

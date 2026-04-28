@@ -1,6 +1,6 @@
 export function AppFooter() {
   return (
-    <footer className="flex h-12 items-center justify-between border-t px-4 text-sm text-muted-foreground">
+    <footer className="flex min-h-12 flex-col items-start justify-center gap-2 border-t px-4 py-3 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:py-0">
       <a
         href="https://github.com/wangxu-dev"
         target="_blank"

@@ -50,8 +50,8 @@ export function ComposerPanel(props: ComposerPanelProps) {
   const currentRatio = reverseSizeMap[fieldValues.size || activeTool?.defaults.size || "1024x1024"] || "1:1"
 
   return (
-    <aside className="w-80 border-r bg-background">
-      <ScrollArea className="h-full">
+    <aside className="border-b bg-background xl:w-80 xl:shrink-0 xl:border-r xl:border-b-0">
+      <ScrollArea className="max-h-[40rem] xl:h-full xl:max-h-none">
         <form className="space-y-6 p-4" onSubmit={onSubmit}>
           <section className="space-y-3">
             <div className="space-y-1">
@@ -103,9 +103,9 @@ export function ComposerPanel(props: ComposerPanelProps) {
             </Select>
 
             <Tabs value={currentRatio} onValueChange={(value) => onFieldChange("size", sizeMap[value as (typeof SIZE_OPTIONS)[number]])}>
-              <TabsList className="grid w-full grid-cols-5">
+              <TabsList className="grid h-auto w-full grid-cols-5">
                 {SIZE_OPTIONS.map((ratio) => (
-                  <TabsTrigger key={ratio} value={ratio}>
+                  <TabsTrigger key={ratio} value={ratio} className="px-2 text-xs sm:text-sm">
                     {ratio}
                   </TabsTrigger>
                 ))}

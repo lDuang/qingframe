@@ -189,10 +189,10 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-screen w-full flex-col bg-background text-foreground">
+    <div className="flex min-h-screen w-full flex-col bg-background text-foreground">
       <AppHeader quota={quota} />
 
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 flex-col xl:min-h-0 xl:flex-row">
         <ComposerPanel
           activeTool={activeTool}
           activeToolId={activeToolId}

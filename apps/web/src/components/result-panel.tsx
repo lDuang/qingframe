@@ -26,8 +26,8 @@ export function ResultPanel({ activeTool, selectedTask, previewUrl, onDownload, 
   const status = selectedTask?.status ?? "idle"
 
   return (
-    <main className="flex flex-1 flex-col p-4">
-      <Card className="flex min-h-0 flex-1 flex-col">
+    <main className="flex min-w-0 flex-1 flex-col p-4">
+      <Card className="flex min-h-[26rem] flex-1 flex-col xl:min-h-0">
         <CardHeader className="border-b">
           <div className="flex items-center justify-between gap-3">
             <div>
@@ -37,8 +37,8 @@ export function ResultPanel({ activeTool, selectedTask, previewUrl, onDownload, 
             <Badge variant={selectedTask?.status === "succeeded" ? "secondary" : "outline"}>{statusLabel[status]}</Badge>
           </div>
         </CardHeader>
-        <CardContent className="flex min-h-0 flex-1 flex-col">
-          <div className="flex min-h-0 flex-1 items-center justify-center rounded-md bg-muted/50">
+        <CardContent className="flex flex-1 flex-col">
+          <div className="flex aspect-square min-h-64 flex-1 items-center justify-center rounded-md bg-muted/50 xl:min-h-0 xl:aspect-auto">
             {selectedTask && previewUrl ? (
               <img alt={selectedTask.toolId} className="h-full w-full rounded-md object-cover" src={previewUrl} />
             ) : (
@@ -58,18 +58,18 @@ export function ResultPanel({ activeTool, selectedTask, previewUrl, onDownload, 
             )}
           </div>
         </CardContent>
-        <CardFooter className="justify-between">
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={onDownload} disabled={!selectedTask || !previewUrl}>
+        <CardFooter className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+            <Button className="w-full sm:w-auto" variant="outline" onClick={onDownload} disabled={!selectedTask || !previewUrl}>
               <Download />
               下载
             </Button>
-            <Button variant="outline" onClick={() => void onCopyNotes()} disabled={!selectedTask?.inputs.notes}>
+            <Button className="w-full sm:w-auto" variant="outline" onClick={() => void onCopyNotes()} disabled={!selectedTask?.inputs.notes}>
               <Copy />
               复制说明
             </Button>
           </div>
-          <Button variant="secondary" onClick={() => void onReuseSelected()} disabled={!selectedTask}>
+          <Button className="w-full sm:w-auto" variant="secondary" onClick={() => void onReuseSelected()} disabled={!selectedTask}>
             <RefreshCw />
             重新处理
           </Button>
