@@ -1,0 +1,7 @@
+.env
+node
+node_modules
+dist/
+apps/server/data/
+apps/server/dist/
+apps/server/public/

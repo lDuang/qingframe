@@ -1,0 +1,95 @@
+[
+  {
+    "id": "custom_prompt",
+    "name": "自定义",
+    "description": "自由输入说明，可选上传参考图。",
+    "mode": "generate",
+    "enabled": true,
+    "acceptsImages": true,
+    "maxImages": 9,
+    "minImages": 0,
+    "fields": [
+      {
+        "key": "notes",
+        "type": "textarea",
+        "label": "说明",
+        "required": false,
+        "placeholder": "输入你的要求"
+      },
+      {
+        "key": "quality",
+        "type": "select",
+        "label": "质量",
+        "required": false,
+        "options": ["auto", "high", "medium"]
+      }
+    ],
+    "defaults": {
+      "quality": "auto",
+      "size": "1024x1024"
+    },
+    "promptTemplate": "{{notes}}"
+  },
+  {
+    "id": "photo_restore",
+    "name": "老照片修复",
+    "description": "上传老照片，修复划痕、噪点和模糊。",
+    "mode": "edit",
+    "enabled": true,
+    "acceptsImages": true,
+    "maxImages": 9,
+    "minImages": 1,
+    "fields": [
+      {
+        "key": "notes",
+        "type": "textarea",
+        "label": "补充说明",
+        "required": false,
+        "placeholder": "例如：去除划痕，增强清晰度，保留黑白质感"
+      },
+      {
+        "key": "quality",
+        "type": "select",
+        "label": "质量",
+        "required": false,
+        "options": ["auto", "high", "medium"]
+      }
+    ],
+    "defaults": {
+      "quality": "high",
+      "size": "1024x1024"
+    },
+    "promptTemplate": "Restore this old photo carefully. Remove scratches, dust, creases, and blur where possible. Preserve identity, composition, facial features, clothing details, and historical realism. Avoid over-smoothing or modern restyling. {{notes}}"
+  },
+  {
+    "id": "virtual_tryon",
+    "name": "衣服试穿",
+    "description": "上传人物图和服装图，生成自然试穿效果。",
+    "mode": "edit",
+    "enabled": true,
+    "acceptsImages": true,
+    "maxImages": 9,
+    "minImages": 2,
+    "fields": [
+      {
+        "key": "notes",
+        "type": "textarea",
+        "label": "补充说明",
+        "required": false,
+        "placeholder": "例如：保持站姿与背景，服装自然贴合"
+      },
+      {
+        "key": "quality",
+        "type": "select",
+        "label": "质量",
+        "required": false,
+        "options": ["auto", "high", "medium"]
+      }
+    ],
+    "defaults": {
+      "quality": "high",
+      "size": "1024x1024"
+    },
+    "promptTemplate": "Use the provided images to create a realistic virtual try-on result. Preserve the person's face, pose, body proportions, and scene as much as possible. Apply the garment naturally with correct folds, fit, and lighting. Avoid changing identity or creating extra accessories unless needed. {{notes}}"
+  }
+]

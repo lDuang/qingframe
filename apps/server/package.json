@@ -1,0 +1,23 @@
+{
+  "name": "@qingframe/server",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.tsx",
+    "build": "esbuild src/index.tsx --bundle --platform=node --format=cjs --target=node20 --external:better-sqlite3 --outfile=dist/server.cjs",
+    "start": "node dist/server.cjs",
+    "db:generate": "drizzle-kit generate --config=drizzle.config.ts",
+    "db:migrate": "node dist/server.cjs --migrate-only"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.0.0",
+    "better-sqlite3": "^11.10.0",
+    "drizzle-orm": "^0.45.2",
+    "hono": "^4.9.8",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

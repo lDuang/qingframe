@@ -1,0 +1,16 @@
+services:
+  qingframe:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: qingframe:latest
+    env_file:
+      - .env
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    volumes:
+      - qingframe-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  qingframe-data:
