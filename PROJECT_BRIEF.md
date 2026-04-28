@@ -260,14 +260,14 @@ V1 should include:
 
 ### Storage
 
-- Redis for rate limiting
+- PostgreSQL for tasks, files, and rate limiting
 - IndexedDB for local history
 
 ### Not needed in V1 by default
 
 - Next.js
 - native app
-- SQLite unless later analytics/admin requirements appear
+- self-hosted local database files inside the app container
 
 ---
 

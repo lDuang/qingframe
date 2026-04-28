@@ -1,6 +1,5 @@
 import dotenv from "dotenv"
 import path from "node:path"
-import { pathToFileURL } from "node:url"
 import { z } from "zod"
 
 const isMigrateOnly = process.argv.includes("--migrate-only")
@@ -14,8 +13,7 @@ const envSchema = z.object({
   NODE_ENV: z.string().default("development"),
   PORT: z.coerce.number().int().positive().default(3000),
   DATA_DIR: z.string().default("./data"),
-  SQLITE_PATH: z.string().default("./data/qingframe.sqlite"),
-  DATABASE_URL: z.string().optional(),
+  DATABASE_URL: z.string().url().optional(),
   TOOLS_CONFIG_PATH: z.string().default("../../config/tools.json"),
   API_BASE_URL: z.string().optional(),
   BASE_API_KEY: z.string().optional(),
@@ -31,8 +29,10 @@ const envSchema = z.object({
 
 const parsed = envSchema.parse(process.env)
 const cwd = process.cwd()
-const sqlitePath = path.resolve(cwd, parsed.SQLITE_PATH)
-const databaseUrl = parsed.DATABASE_URL || pathToFileURL(sqlitePath).href
+
+if (!parsed.DATABASE_URL) {
+  throw new Error("DATABASE_URL is required")
+}
 
 if (!isMigrateOnly) {
   if (!parsed.API_BASE_URL) {
@@ -47,8 +47,7 @@ if (!isMigrateOnly) {
 export const config = {
   ...parsed,
   dataDir: path.resolve(cwd, parsed.DATA_DIR),
-  sqlitePath,
-  databaseUrl,
+  databaseUrl: parsed.DATABASE_URL,
   toolsConfigPath: path.resolve(cwd, parsed.TOOLS_CONFIG_PATH),
   uploadsDir: path.resolve(cwd, parsed.DATA_DIR, "uploads"),
   resultsDir: path.resolve(cwd, parsed.DATA_DIR, "results")

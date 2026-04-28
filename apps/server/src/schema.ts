@@ -1,17 +1,17 @@
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core"
+import { pgTable, text, integer, bigint } from "drizzle-orm/pg-core"
 
-export const files = sqliteTable("files", {
+export const files = pgTable("files", {
   id: text("id").primaryKey(),
   deviceId: text("device_id").notNull(),
   originalName: text("original_name").notNull(),
   mimeType: text("mime_type").notNull(),
   sizeBytes: integer("size_bytes").notNull(),
   relativePath: text("relative_path").notNull(),
-  createdAt: integer("created_at", { mode: "number" }).notNull(),
-  expiresAt: integer("expires_at", { mode: "number" }).notNull()
+  createdAt: bigint("created_at", { mode: "number" }).notNull(),
+  expiresAt: bigint("expires_at", { mode: "number" }).notNull()
 })
 
-export const tasks = sqliteTable("tasks", {
+export const tasks = pgTable("tasks", {
   id: text("id").primaryKey(),
   deviceId: text("device_id").notNull(),
   toolId: text("tool_id").notNull(),
@@ -25,16 +25,16 @@ export const tasks = sqliteTable("tasks", {
   providerRequestId: text("provider_request_id"),
   providerRawJson: text("provider_raw_json"),
   errorMessage: text("error_message"),
-  createdAt: integer("created_at", { mode: "number" }).notNull(),
-  updatedAt: integer("updated_at", { mode: "number" }).notNull(),
-  expiresAt: integer("expires_at", { mode: "number" }).notNull()
+  createdAt: bigint("created_at", { mode: "number" }).notNull(),
+  updatedAt: bigint("updated_at", { mode: "number" }).notNull(),
+  expiresAt: bigint("expires_at", { mode: "number" }).notNull()
 })
 
-export const rateLimits = sqliteTable("rate_limits", {
+export const rateLimits = pgTable("rate_limits", {
   key: text("key").primaryKey(),
   scope: text("scope").notNull(),
   count: integer("count").notNull(),
   windowStart: text("window_start").notNull(),
-  cooldownUntil: integer("cooldown_until", { mode: "number" }),
-  updatedAt: integer("updated_at", { mode: "number" }).notNull()
+  cooldownUntil: bigint("cooldown_until", { mode: "number" }),
+  updatedAt: bigint("updated_at", { mode: "number" }).notNull()
 })

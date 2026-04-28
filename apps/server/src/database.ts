@@ -1,14 +1,17 @@
 import fs from "node:fs"
 import path from "node:path"
-import Database from "better-sqlite3"
-import { drizzle } from "drizzle-orm/better-sqlite3"
-import { migrate } from "drizzle-orm/better-sqlite3/migrator"
+import postgres from "postgres"
+import { drizzle } from "drizzle-orm/postgres-js"
+import { migrate } from "drizzle-orm/postgres-js/migrator"
 import { config } from "./config"
 import * as schema from "./schema"
 
-fs.mkdirSync(path.dirname(config.sqlitePath), { recursive: true })
+fs.mkdirSync(config.dataDir, { recursive: true })
 
-const client = new Database(config.sqlitePath)
+const client = postgres(config.databaseUrl, {
+  max: 1,
+  prepare: false,
+})
 
 export const db = drizzle(client, { schema })
 

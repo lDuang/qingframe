@@ -1,7 +1,5 @@
-FROM oven/bun:1.3.11 AS build
+FROM oven/bun:1.3.11-alpine AS build
 WORKDIR /app
-
-RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
 
 COPY package.json bun.lock tsconfig.base.json ./
 COPY apps/web/package.json apps/web/package.json
@@ -11,7 +9,7 @@ RUN bun install
 COPY . .
 RUN bun run build
 
-FROM node:22-slim AS runtime
+FROM node:22-alpine AS runtime
 WORKDIR /app
 
 ENV NODE_ENV=production
