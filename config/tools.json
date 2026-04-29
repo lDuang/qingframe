@@ -91,5 +91,36 @@
       "size": "1024x1024"
     },
     "promptTemplate": "Use the provided images to create a realistic virtual try-on result. Preserve the person's face, pose, body proportions, and scene as much as possible. Apply the garment naturally with correct folds, fit, and lighting. Avoid changing identity or creating extra accessories unless needed. {{notes}}"
+  },
+  {
+    "id": "hairstyle_analysis",
+    "name": "发型分析",
+    "description": "上传一张人像照片，生成中文发型分析对比图。",
+    "mode": "edit",
+    "enabled": true,
+    "acceptsImages": true,
+    "maxImages": 9,
+    "minImages": 1,
+    "fields": [
+      {
+        "key": "notes",
+        "type": "textarea",
+        "label": "补充说明",
+        "required": false,
+        "placeholder": "例如：偏职场风、保留自然感、突出发色建议"
+      },
+      {
+        "key": "quality",
+        "type": "select",
+        "label": "质量",
+        "required": false,
+        "options": ["auto", "high", "medium"]
+      }
+    ],
+    "defaults": {
+      "quality": "high",
+      "size": "1024x1024"
+    },
+    "promptTemplate": "请根据这张人像照片，生成一份发型分析图。要求分析并呈现：脸型（例如：椭圆形、圆形、方形、心形）、发质（直发、卷发、波浪发）、发量（稀少、中等、浓密）、发际线与额头比例、整体氛围与风格适配度。视觉对比展示：推荐发型 vs 不推荐发型、短发 / 中发 / 长发选项、不同刘海/分线风格（无刘海、法式刘海、侧分等）。包含板块：1. 推荐发型 2. 不推荐发型 3. 头发长度 4. 分线与刘海 5. 发色分析（冷暖色调分析，显示色板 + 同一肖像上的真实发色模拟）。设计要求：干净、现代、视觉优先；同一人像照片做左右或并排对比；极简文字，只用短标签，不要段落；语言仅使用中文。可选附加项：最后增加一个总结板块：整体造型建议。{{notes}}"
   }
 ]
